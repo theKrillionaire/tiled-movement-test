@@ -2,6 +2,9 @@
 #include <raylib.h>
 #include <cstring>
 #include <vector>
+#include "player.h"
+
+
 
 int main(int argc, char** argv) {
 	bool debug = false;
@@ -16,8 +19,8 @@ int main(int argc, char** argv) {
 	
 	const int tileSize = 32;
 	
-	int playerPos[2] = { 9, 7 };
-	//Rectangle playerCollider = { playerPos[0] * 32, playerPos[1] * 32, 32,32 };
+	player p;
+	
 	
 	std::vector<Rectangle> walls = { 
 		{0, 0, 640, 32},
@@ -28,38 +31,16 @@ int main(int argc, char** argv) {
 	};
 	
 	
-	while(!WindowShouldClose()) {
-		// logic
-		int playerPosT[2] = { playerPos[0] * 32, playerPos[1] * 32 };
-		
-		int newPos[2] = {playerPos[0], playerPos[1]};
-		int mouseX = GetMouseX();
-		int mouseY = GetMouseY();	
-			
-
-		
-		if(IsKeyPressed(KEY_LEFT)) newPos[0]--;
-		else if(IsKeyPressed(KEY_RIGHT)) newPos[0]++;
-		if(IsKeyPressed(KEY_UP)) newPos[1]--;
-		else if(IsKeyPressed(KEY_DOWN)) newPos[1]++;
-		
-		Rectangle playerColliderX = { newPos[0] * 32, playerPosT[1], 32,32 };
-		Rectangle playerColliderY = { playerPosT[0], newPos[1] * 32, 32,32 };
-		
-		bool collideX = false;
-		bool collideY = false;
-		for(int i = 0; i < walls.size();i++) {
-			if(CheckCollisionRecs(walls[i], playerColliderX)) collideX = true; 
-			if(CheckCollisionRecs(walls[i], playerColliderY)) collideY = true; 
-		}
-		
-		if(!collideX) playerPos[0] = newPos[0];
-		if(!collideY) playerPos[1] = newPos[1];
-		
-		
-
-		//drawing
-		BeginDrawing();
+	while(!WindowShouldClose()) {	
+	
+	int playerPosT[2];
+	p.getPosT(playerPosT);
+	p.update(walls);
+	
+	int mouseX = GetMouseX();
+	int mouseY = GetMouseY();
+	
+			BeginDrawing();
 			ClearBackground(BLACK);
 			DrawRectangle(playerPosT[0], playerPosT[1], 32, 32, RED);
 			for(int i = 0; i < walls.size();i++) {

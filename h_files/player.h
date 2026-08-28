@@ -10,6 +10,7 @@ class player {
 		int playerPos[2] = { 9, 7 };
 	public:
 		void update(std::vector<Rectangle> walls);
+		void getPosT(int* array);
 };
 
 #endif
