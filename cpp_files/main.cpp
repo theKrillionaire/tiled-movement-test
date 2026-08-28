@@ -3,7 +3,7 @@
 #include <cstring>
 #include <vector>
 #include "player.h"
-
+#include "render.h"
 
 
 int main(int argc, char** argv) {
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 	const int tileSize = 32;
 	
 	player p;
-	
+	renderer r;
 	
 	std::vector<Rectangle> walls = { 
 		{0, 0, 640, 32},
@@ -31,27 +31,17 @@ int main(int argc, char** argv) {
 	};
 	
 	
+	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
+	std::vector<int> positionsBuffer = {0, 0};
+	
 	while(!WindowShouldClose()) {	
 	
-	int playerPosT[2];
-	p.getPosT(playerPosT);
-	p.update(walls);
+		int playerPosT[2];
+		p.getPosT(playerPosT);
+		p.update(walls);
+		positionsBuffer = {playerPosT[0], playerPosT[1]};
+		r.drawScreen(spritesBuffer, positionsBuffer, debug, walls);
 	
-	int mouseX = GetMouseX();
-	int mouseY = GetMouseY();
-	
-			BeginDrawing();
-			ClearBackground(BLACK);
-			DrawRectangle(playerPosT[0], playerPosT[1], 32, 32, RED);
-			for(int i = 0; i < walls.size();i++) {
-				DrawRectangle(walls[i].x, walls[i].y, walls[i].width, walls[i].height, LIGHTGRAY);
-			}
-			if(debug) { 
-				char buffer[64];
-				snprintf(buffer, 64, "x%i, y%i\n", mouseX / 32 * 32, mouseY / 32 * 32);
-				DrawText(buffer, 5,5, 20, WHITE);
-			}
-		EndDrawing();
 	}
 	return 0;
 }

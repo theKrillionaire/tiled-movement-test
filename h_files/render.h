@@ -2,10 +2,13 @@
 #define RENDER_H
 
 #include <raylib.h>
-#include "
+#include <vector>
 
 class renderer {
-	void drawScreen(std::vector<Texture2D> sprites, std::vector<int> positions);
+	private:
+		
+	public:
+		void drawScreen(std::vector<Texture2D> sprites, std::vector<int> positions, bool debug, std::vector<Rectangle> walls);
 	
 };
 
