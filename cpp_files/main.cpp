@@ -4,7 +4,7 @@
 #include <vector>
 #include "player.h"
 #include "render.h"
-
+#include "map.h"
 
 int main(int argc, char** argv) {
 	bool debug = false;
@@ -21,6 +21,8 @@ int main(int argc, char** argv) {
 	
 	player p;
 	renderer r;
+	map m;
+	
 	
 	std::vector<Rectangle> walls = { 
 		{0, 0, 640, 32},
@@ -30,6 +32,11 @@ int main(int argc, char** argv) {
 		{352, 64, 224, 128}
 	};
 	
+	m.makeWalls();
+	walls = m.getWalls();
+	for(Rectangle wall : walls) {
+		printf("%f,%f,%f,%f", wall.x, wall.y, wall.width, wall.height);
+	}
 	
 	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
 	std::vector<int> positionsBuffer = {0, 0};
