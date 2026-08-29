@@ -40,14 +40,13 @@ int main(int argc, char** argv) {
 	}
 	
 	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
-	std::vector<int> positionsBuffer = {0, 0};
+	std::vector<player::pos> positionsBuffer;
 	
 	while(!WindowShouldClose()) {	
 	
-		int playerPosT[2];
-		p.getPosT(playerPosT);
+		player::pos playerPosT = p.getPosT();
 		p.update(walls);
-		positionsBuffer = {playerPosT[0], playerPosT[1]};
+		positionsBuffer = {playerPosT};
 		r.drawScreen(spritesBuffer, positionsBuffer, debug, walls);
 	
 	}

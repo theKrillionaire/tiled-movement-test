@@ -2,15 +2,16 @@
 #include <raylib.h>
 #include <vector>
 #include <stdio.h>
+#include "player.h"
 
-void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<int> positions, bool debug, std::vector<Rectangle> walls) {
+void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<player::pos> positions, bool debug, std::vector<Rectangle> walls) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	
 	BeginDrawing();
 		ClearBackground(BLACK);
 		for(int i = 0; i < sprites.size(); i++) {
-			DrawTexture(sprites[i], positions[i * 2], positions[i * 2 + 1], WHITE);
+			DrawTexture(sprites[i], positions[i].x, positions[i].y, WHITE);
 		}
 		for(int i = 0; i < walls.size();i++) {
 			DrawRectangle(walls[i].x, walls[i].y, walls[i].width, walls[i].height, LIGHTGRAY);

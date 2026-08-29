@@ -3,17 +3,18 @@
 #include <raylib.h>
 
 void player::update(std::vector<Rectangle> walls) {
-	int playerPosT[2] = { playerPos[0] * 32, playerPos[1] * 32 };
+	playerPos;
+	pos playerPosT = {playerPos.x * 32, playerPos.y * 32 };
 		
-	int newPos[2] = {playerPos[0], playerPos[1]};	
+	pos newPos = {playerPos.x, playerPos.y};	
 	
-	if(IsKeyPressed(KEY_LEFT)) newPos[0]--;
-	else if(IsKeyPressed(KEY_RIGHT)) newPos[0]++;
-	if(IsKeyPressed(KEY_UP)) newPos[1]--;
-	else if(IsKeyPressed(KEY_DOWN)) newPos[1]++;
+	if(IsKeyPressed(KEY_LEFT)) newPos.x--;
+	else if(IsKeyPressed(KEY_RIGHT)) newPos.x++;
+	if(IsKeyPressed(KEY_UP)) newPos.y--;
+	else if(IsKeyPressed(KEY_DOWN)) newPos.y++;
 	
-	Rectangle playerColliderX = { newPos[0] * 32, playerPosT[1], 32,32 };
-	Rectangle playerColliderY = { playerPosT[0], newPos[1] * 32, 32,32 };
+	Rectangle playerColliderX = { newPos.x * 32, playerPosT.y, 32,32 };
+	Rectangle playerColliderY = { playerPosT.x, newPos.y * 32, 32,32 };
 	
 	bool collideX = false;
 	bool collideY = false;
@@ -22,13 +23,12 @@ void player::update(std::vector<Rectangle> walls) {
 		if(CheckCollisionRecs(walls[i], playerColliderY)) collideY = true; 
 	}
 	
-	if(!collideX) playerPos[0] = newPos[0];
-	if(!collideY) playerPos[1] = newPos[1];
+	if(!collideX) playerPos.x = newPos.x;
+	if(!collideY) playerPos.y = newPos.y;
 	
 }
 
-void player::getPosT(int* array) {
-	int playerPosT[2] = { playerPos[0] * 32, playerPos[1] * 32 };
-	array[0] = playerPosT[0];
-	array[1] = playerPosT[1];
+player::pos player::getPosT() {
+	pos playerPosT = { playerPos.x * 32, playerPos.y * 32 };
+	return playerPosT;
 }

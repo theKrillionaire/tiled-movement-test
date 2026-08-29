@@ -6,11 +6,17 @@
 #include <vector>
 
 class player {
-	private:
-		int playerPos[2] = { 9, 7 };
 	public:
+		struct pos {
+			int x;
+			int y;
+		};
 		void update(std::vector<Rectangle> walls);
-		void getPosT(int* array);
+		pos getPosT();
+		void forcePlayerPos(int);
+	private:
+		player::pos playerPos = {9,7};
+		
 };
 
 #endif
