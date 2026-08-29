@@ -1,12 +1,13 @@
 #include "player.h"
 #include <vector>
 #include <raylib.h>
+#include "utility.h"
 
 void player::update(std::vector<Rectangle> walls) {
 	playerPos;
-	pos playerPosT = {playerPos.x * 32, playerPos.y * 32 };
+	utility::pos playerPosT = {playerPos.x * 32, playerPos.y * 32 };
 		
-	pos newPos = {playerPos.x, playerPos.y};	
+	utility::pos newPos = {playerPos.x, playerPos.y};	
 	
 	if(IsKeyPressed(KEY_LEFT)) newPos.x--;
 	else if(IsKeyPressed(KEY_RIGHT)) newPos.x++;
@@ -28,7 +29,7 @@ void player::update(std::vector<Rectangle> walls) {
 	
 }
 
-player::pos player::getPosT() {
-	pos playerPosT = { playerPos.x * 32, playerPos.y * 32 };
+utility::pos player::getPosT() {
+	utility::pos playerPosT = { playerPos.x * 32, playerPos.y * 32 };
 	return playerPosT;
 }

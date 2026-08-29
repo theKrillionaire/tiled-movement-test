@@ -5,6 +5,7 @@
 #include "player.h"
 #include "render.h"
 #include "map.h"
+#include "utility.h"
 
 int main(int argc, char** argv) {
 	bool debug = false;
@@ -40,11 +41,11 @@ int main(int argc, char** argv) {
 	}
 	
 	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
-	std::vector<player::pos> positionsBuffer;
+	std::vector<utility::pos> positionsBuffer;
 	
 	while(!WindowShouldClose()) {	
 	
-		player::pos playerPosT = p.getPosT();
+		utility::pos playerPosT = p.getPosT();
 		p.update(walls);
 		positionsBuffer = {playerPosT};
 		r.drawScreen(spritesBuffer, positionsBuffer, debug, walls);

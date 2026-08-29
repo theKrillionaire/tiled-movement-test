@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "player.h"
 
-void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<player::pos> positions, bool debug, std::vector<Rectangle> walls) {
+void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, std::vector<Rectangle> walls) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	

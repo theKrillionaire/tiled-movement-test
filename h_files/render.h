@@ -4,12 +4,13 @@
 #include <raylib.h>
 #include <vector>
 #include "player.h"
+#include "utility.h"
 
 class renderer {
 	private:
 		
 	public:
-		void drawScreen(std::vector<Texture2D> sprites, std::vector<player::pos> positions, bool debug, std::vector<Rectangle> walls);
+		void drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, std::vector<Rectangle> walls);
 	
 };
 
