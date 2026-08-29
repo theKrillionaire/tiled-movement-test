@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
 		{352, 64, 224, 128}
 	};
 	
+	m.loadMap("map");
 	m.makeWalls();
 	walls = m.getWalls();
 	for(Rectangle wall : walls) {
