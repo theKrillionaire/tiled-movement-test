@@ -2,8 +2,9 @@
 #include <vector>
 #include <raylib.h>
 #include "utility.h"
+#include "map.h"
 
-void player::update(std::vector<Rectangle> walls) {
+void player::update(map::mapData map) {
 	playerPos;
 	utility::pos playerPosT = {playerPos.x * 32, playerPos.y * 32 };
 		
@@ -19,9 +20,9 @@ void player::update(std::vector<Rectangle> walls) {
 	
 	bool collideX = false;
 	bool collideY = false;
-	for(int i = 0; i < walls.size();i++) {
-		if(CheckCollisionRecs(walls[i], playerColliderX)) collideX = true; 
-		if(CheckCollisionRecs(walls[i], playerColliderY)) collideY = true; 
+	for(int i = 0; i < map.walls.size();i++) {
+		if(CheckCollisionRecs(map.walls[i], playerColliderX)) collideX = true; 
+		if(CheckCollisionRecs(map.walls[i], playerColliderY)) collideY = true; 
 	}
 	
 	if(!collideX) playerPos.x = newPos.x;

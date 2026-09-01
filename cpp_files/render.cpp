@@ -3,8 +3,9 @@
 #include <vector>
 #include <stdio.h>
 #include "player.h"
+#include "map.h"
 
-void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, std::vector<Rectangle> walls) {
+void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, map::mapData map) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	
@@ -13,8 +14,8 @@ void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<utility::p
 		for(int i = 0; i < sprites.size(); i++) {
 			DrawTexture(sprites[i], positions[i].x, positions[i].y, WHITE);
 		}
-		for(int i = 0; i < walls.size();i++) {
-			DrawRectangle(walls[i].x, walls[i].y, walls[i].width, walls[i].height, LIGHTGRAY);
+		for(int i = 0; i < map.walls.size();i++) {
+			DrawRectangle(map.walls[i].x, map.walls[i].y, map.walls[i].width, map.walls[i].height, LIGHTGRAY);
 		}
 		if(debug) { 
 			char buffer[64];

@@ -25,30 +25,27 @@ int main(int argc, char** argv) {
 	map m;
 	
 	
-	std::vector<Rectangle> walls = { 
-		{0, 0, 640, 32},
-		{0, 0, 32, 480},
-		{0, 448, 640, 32},
-		{608, 0, 32, 480},
-		{352, 64, 224, 128}
-	};
+	map::mapData map;
 	
 	m.loadMap("map");
 	m.makeWalls();
-	walls = m.getWalls();
-	for(Rectangle wall : walls) {
-		printf("%f,%f,%f,%f", wall.x, wall.y, wall.width, wall.height);
+	map.walls = m.getWalls();
+	m.getMapSize(&map.sizeX, &map.sizeY);
+	for(Rectangle wall : map.walls) {
+		printf("%f,%f,%f,%f", wall.x / 32, wall.y / 32, wall.width / 32, wall.height / 32);
 	}
+	printf("sizeX: %i, sizeY: %i", map.sizeX, map.sizeY);
 	
 	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
 	std::vector<utility::pos> positionsBuffer;
 	
 	while(!WindowShouldClose()) {	
-	
+		
+		
 		utility::pos playerPosT = p.getPosT();
-		p.update(walls);
+		p.update(map);
 		positionsBuffer = {playerPosT};
-		r.drawScreen(spritesBuffer, positionsBuffer, debug, walls);
+		r.drawScreen(spritesBuffer, positionsBuffer, debug, map);
 	
 	}
 	return 0;

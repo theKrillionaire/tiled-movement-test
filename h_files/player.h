@@ -5,10 +5,11 @@
 #include <raylib.h>
 #include <vector>
 #include "utility.h"
+#include "map.h"
 
 class player {
 	public:
-		void update(std::vector<Rectangle> walls);
+		void update(map::mapData map);
 		utility::pos getPosT();
 		void forcePlayerPos(int);
 	private:

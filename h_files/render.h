@@ -5,12 +5,13 @@
 #include <vector>
 #include "player.h"
 #include "utility.h"
+#include "map.h"
 
 class renderer {
 	private:
 		
 	public:
-		void drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, std::vector<Rectangle> walls);
+		void drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, map::mapData map);
 	
 };
 
