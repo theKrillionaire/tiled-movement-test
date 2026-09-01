@@ -2,17 +2,21 @@
 #include <raylib.h>
 #include <vector>
 #include <stdio.h>
-#include "player.h"
 #include "map.h"
+#include "renderable.h"
+#include "utility.h"
 
-void renderer::drawScreen(std::vector<Texture2D> sprites, std::vector<utility::pos> positions, bool debug, map::mapData map) {
+
+void renderer::drawScreen(std::vector<renderable*> objects, bool debug, map::mapData map) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	
 	BeginDrawing();
 		ClearBackground(BLACK);
-		for(int i = 0; i < sprites.size(); i++) {
-			DrawTexture(sprites[i], positions[i].x, positions[i].y, WHITE);
+		for(int i = 0; i < objects.size(); i++) {
+			Texture2D sprite = objects[i]->getSprite();
+			utility::pos pos = objects[i]->getPos();
+			DrawTexture(sprite, pos.x, pos.y, WHITE);
 		}
 		for(int i = 0; i < map.walls.size();i++) {
 			DrawRectangle(map.walls[i].x, map.walls[i].y, map.walls[i].width, map.walls[i].height, LIGHTGRAY);

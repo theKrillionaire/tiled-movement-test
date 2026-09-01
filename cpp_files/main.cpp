@@ -6,6 +6,7 @@
 #include "render.h"
 #include "map.h"
 #include "utility.h"
+#include "renderable.h"
 
 int main(int argc, char** argv) {
 	bool debug = false;
@@ -36,16 +37,14 @@ int main(int argc, char** argv) {
 	}
 	printf("sizeX: %i, sizeY: %i", map.sizeX, map.sizeY);
 	
-	std::vector<Texture2D> spritesBuffer = { LoadTexture("sprites/player.png") };
-	std::vector<utility::pos> positionsBuffer;
+	std::vector<renderable*> renderObjects = { &p };
 	
 	while(!WindowShouldClose()) {	
 		
 		
 		utility::pos playerPosT = p.getPosT();
 		p.update(map);
-		positionsBuffer = {playerPosT};
-		r.drawScreen(spritesBuffer, positionsBuffer, debug, map);
+		r.drawScreen(renderObjects, debug, map);
 	
 	}
 	return 0;

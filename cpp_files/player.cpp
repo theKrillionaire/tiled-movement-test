@@ -3,6 +3,12 @@
 #include <raylib.h>
 #include "utility.h"
 #include "map.h"
+#include "stdio.h"
+
+player::player() {
+	sprite = LoadTexture("sprites/player.png");
+	if(sprite.width == 0) printf("go fuck yourself\n");
+}
 
 void player::update(map::mapData map) {
 	playerPos;
@@ -34,3 +40,14 @@ utility::pos player::getPosT() {
 	utility::pos playerPosT = { playerPos.x * 32, playerPos.y * 32 };
 	return playerPosT;
 }
+
+
+utility::pos player::getPos() {
+	utility::pos playerPosT = {playerPos.x * 32, playerPos.y * 32 };
+	return playerPosT;
+}
+
+Texture2D player::getSprite() {
+	return sprite;
+}
+
