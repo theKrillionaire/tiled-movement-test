@@ -7,7 +7,7 @@
 #include "utility.h"
 
 
-void renderer::drawScreen(std::vector<renderable*> objects, bool debug, map::mapData map) {
+void renderer::drawScreen(std::vector<renderable*> objects, bool debug, map::mapData* map) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	
@@ -18,8 +18,8 @@ void renderer::drawScreen(std::vector<renderable*> objects, bool debug, map::map
 			utility::pos pos = objects[i]->getPos();
 			DrawTexture(sprite, pos.x, pos.y, WHITE);
 		}
-		for(int i = 0; i < map.walls.size();i++) {
-			DrawRectangle(map.walls[i].x, map.walls[i].y, map.walls[i].width, map.walls[i].height, LIGHTGRAY);
+		for(int i = 0; i < map->walls.size();i++) {
+			DrawRectangle(map->walls[i].x, map->walls[i].y, map->walls[i].width, map->walls[i].height, LIGHTGRAY);
 		}
 		if(debug) { 
 			char buffer[64];

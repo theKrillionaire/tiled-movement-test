@@ -40,11 +40,9 @@ int main(int argc, char** argv) {
 	std::vector<renderable*> renderObjects = { &p };
 	
 	while(!WindowShouldClose()) {	
-		
-		
 		utility::pos playerPosT = p.getPosT();
 		p.update(map);
-		r.drawScreen(renderObjects, debug, map);
+		r.drawScreen(renderObjects, debug, &map);
 	
 	}
 	return 0;

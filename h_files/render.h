@@ -11,7 +11,7 @@ class renderer {
 	private:
 		
 	public:
-		void drawScreen(std::vector<renderable*>, bool debug, map::mapData map);
+		void drawScreen(std::vector<renderable*>, bool debug, map::mapData* map);
 	
 };
 
