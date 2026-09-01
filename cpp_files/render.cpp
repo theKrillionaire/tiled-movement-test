@@ -7,15 +7,15 @@
 #include "utility.h"
 
 
-void renderer::drawScreen(std::vector<renderable*> objects, bool debug, map::mapData* map) {
+void renderer::drawScreen(const std::vector<renderable*>* objects, const bool debug, const map::mapData* map) {
 	int mouseX = GetMouseX();
 	int mouseY = GetMouseY();
 	
 	BeginDrawing();
 		ClearBackground(BLACK);
-		for(int i = 0; i < objects.size(); i++) {
-			Texture2D sprite = objects[i]->getSprite();
-			utility::pos pos = objects[i]->getPos();
+		for(int i = 0; i < objects->size(); i++) {
+			Texture2D sprite = (*objects)[i]->getSprite();
+			utility::pos pos = (*objects)[i]->getPos();
 			DrawTexture(sprite, pos.x, pos.y, WHITE);
 		}
 		for(int i = 0; i < map->walls.size();i++) {
