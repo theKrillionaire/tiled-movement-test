@@ -7,6 +7,8 @@
 #include "map.h"
 #include "utility.h"
 #include "renderable.h"
+#include "object.h"
+
 
 int main(int argc, char** argv) {
 	bool debug = false;
@@ -26,6 +28,11 @@ int main(int argc, char** argv) {
 	map m;
 	
 	
+	object obj;
+	obj.setPos(utility::pos{3,3});
+	obj.setSpr(LoadTexture("sprites/piss.png"));
+	
+	
 	map::mapData map;
 	
 	m.loadMap("map");
@@ -37,7 +44,7 @@ int main(int argc, char** argv) {
 	}
 	printf("sizeX: %i, sizeY: %i", map.sizeX, map.sizeY);
 	
-	std::vector<renderable*> renderObjects = { &p };
+	std::vector<renderable*> renderObjects = { &obj, &p  };
 	
 	while(!WindowShouldClose()) {	
 		utility::pos playerPosT = p.getPosT();
